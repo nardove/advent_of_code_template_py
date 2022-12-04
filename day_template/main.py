@@ -14,7 +14,6 @@ def parse(input):
     Returns:
         list: parsed
     """
-    print(os.path.exists(input))
 
     if not os.path.exists(input):
         raise FileNotFoundError(errno.ENOENT, os.strerror(errno.ENOENT), input)
