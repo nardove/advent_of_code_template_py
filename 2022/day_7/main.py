@@ -54,17 +54,22 @@ def solve_part_one(input):
                         path = "/home"
                         
                     case '..':
+                        # Goes back 1 dir up
                         path = path[:path.rfind("/")]
                 
                     case _:
+                        # Creates a path and adds them to dirs dict
                         path = path + '/' + dir
                         dirs.update({ path: 0 })
             
             # Handle files in directory
             case _:
+                # Check for file sizes
                 bites = re.findall("[0-9]+", line)
                 dir = path
-
+                
+                # If a file is found
+                # Add the total file size count to its corresponding dir/path
                 if len(bites) > 0:
                     for _ in range(path.count('/')):
                         dirs[dir] += int(bites[0])
