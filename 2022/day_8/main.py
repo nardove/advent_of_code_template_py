@@ -56,16 +56,39 @@ def solve_part_one(input):
             row = grid[i+1:i+2][0]
             col = [row[j+1] for row in grid]
             tree = grid[i+1][j+1]
-            left = col[:i+1]
-            right = col[i+2:]
-            up = row[:j+1]
-            down = row[j+2:]
+            up = col[:i+1]
+            down = col[i+2:]
+            left = row[:j+1]
+            right = row[j+2:]
             
             if tree > max(left) or tree > max(right) or tree > max(up) or tree > max(down):
                 visible_trees += 1
 
             # print(f"{Style.RESET_ALL}r: {Fore.YELLOW}{row}{Style.RESET_ALL} - c: {Fore.CYAN}{col}{Style.RESET_ALL} - t: {Fore.BLUE}{tree}{Style.RESET_ALL} - {Fore.CYAN}{i+1},{Fore.YELLOW}{j+1}{Style.RESET_ALL} - {visible_trees}")
 
+            # Part Two
+            # print(f"{left[::-1]} {Fore.BLUE}{tree}{Style.RESET_ALL} {right}")
+            # print(f"{up[::-1]} {Fore.BLUE}{tree}{Style.RESET_ALL} {down}")
+            
+            score = 1
+            for lst in (left[::-1], right, up[::-1], down):
+                tracker = 0
+                for t in lst:
+                    if tree > t:
+                        tracker += 1
+                    elif tree == t:
+                        tracker += 1
+                        break
+                    else:
+                        tracker += 1
+                        break
+                score *= tracker
+                
+                # print(f"tracker {tracker}")
+
+            scores.append(score)
+
+    print(max(scores))  
     return visible_trees + (rows + cols - 2) * 2 
 
 
