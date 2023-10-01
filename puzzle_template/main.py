@@ -1,5 +1,6 @@
 import os
 import errno
+from colorama import Fore, Back, Style
 
 
 def parse(input):
@@ -59,10 +60,12 @@ def solve_part_two(input):
 
 
 if __name__ == "__main__":
-    input = parse("./input.txt")
+    input = parse("input.txt")
 
     part_one_result = solve_part_one(input)
-    print(f"Challenge result Part One: {part_one_result}")
+    print(f"Challenge result Part One: {Fore.LIGHTCYAN_EX}{part_one_result}")
+
+    print(Style.RESET_ALL)
 
     part_two_result = solve_part_two(input)
-    print(f"Challenge result Part Two: {part_two_result}")
+    print(f"Challenge result Part Two: {Fore.MAGENTA}{part_two_result}")
